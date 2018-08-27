@@ -1,3 +1,240 @@
 {
-    "mappings" : [ ]
+    "mappings" : [
+        {
+            "target" : "managed/user",
+            "source" : "system/xmlfile/xmlUser",
+            "name" : "systemXmlfileXmlUser_managedUser",
+            "properties" : [
+                {
+                    "target" : "mail",
+                    "source" : "email"
+                },
+                {
+                    "target" : "sn",
+                    "source" : "lastname"
+                },
+                {
+                    "target" : "givenName",
+                    "source" : "firstname"
+                },
+                {
+                    "target" : "userName",
+                    "source" : "_id"
+                },
+                {
+                    "target" : "password",
+                    "default" : "Welcome1"
+                },
+                {
+                    "target" : "telephoneNumber",
+                    "source" : "mobileTelephoneNumber"
+                },
+                {
+                    "target" : "authzRoles",
+                    "source" : "roles",
+                    "transform" : {
+                        "type" : "text/javascript",
+                        "globals" : { },
+                        "source" : "var _ = require('lib/lodash');\n_.map(source.split(','), function(role) {\n  return {'_ref' : 'repo/internal/role/' + role} \n});"
+                    }
+                }
+            ],
+            "policies" : [
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "AMBIGUOUS"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "SOURCE_MISSING"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "MISSING"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "FOUND_ALREADY_LINKED"
+                },
+                {
+                    "action" : "DELETE",
+                    "situation" : "UNQUALIFIED"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "UNASSIGNED"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "LINK_ONLY"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "TARGET_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "SOURCE_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "ALL_GONE"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "CONFIRMED"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "FOUND"
+                },
+                {
+                    "action" : "CREATE",
+                    "situation" : "ABSENT"
+                }
+            ],
+            "correlationQuery" : [
+                {
+                    "linkQualifier" : "default",
+                    "expressionTree" : {
+                        "any" : [
+                            "userName"
+                        ]
+                    },
+                    "mapping" : "systemXmlfileXmlUser_managedUser",
+                    "type" : "text/javascript",
+                    "file" : "ui/correlateTreeToQueryFilter.js"
+                }
+            ]
+        },
+        {
+            "target" : "system/corporateLDAP/account",
+            "source" : "managed/user",
+            "name" : "managedUser_systemCorporateldapAccount",
+            "properties" : [
+                {
+                    "target" : "uid",
+                    "source" : "userName"
+                },
+                {
+                    "target" : "mail",
+                    "source" : "mail"
+                },
+                {
+                    "target" : "sn",
+                    "source" : "sn"
+                },
+                {
+                    "target" : "cn",
+                    "transform" : {
+                        "type" : "text/javascript",
+                        "globals" : { },
+                        "source" : "source.displayName || (source.givenName + ' ' + source.sn);"
+                    },
+                    "source" : ""
+                },
+                {
+                    "target" : "givenName",
+                    "source" : "givenName"
+                },
+                {
+                    "target" : "telephoneNumber",
+                    "source" : "telephoneNumber",
+                    "condition" : {
+                        "type" : "text/javascript",
+                        "globals" : { },
+                        "source" : "!!object.telephoneNumber"
+                    }
+                },
+                {
+                    "target" : "userPassword",
+                    "condition" : {
+                        "type" : "text/javascript",
+                        "globals" : { },
+                        "source" : "object.password != null;"
+                    },
+                    "transform" : {
+                        "type" : "text/javascript",
+                        "globals" : { },
+                        "source" : "openidm.decrypt(source);"
+                    },
+                    "source" : "password",
+                    "default" : "Welcome1"
+                }
+            ],
+            "policies" : [
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "AMBIGUOUS"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "SOURCE_MISSING"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "MISSING"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "FOUND_ALREADY_LINKED"
+                },
+                {
+                    "action" : "DELETE",
+                    "situation" : "UNQUALIFIED"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "UNASSIGNED"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "LINK_ONLY"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "TARGET_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "SOURCE_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "ALL_GONE"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "CONFIRMED"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "FOUND"
+                },
+                {
+                    "action" : "CREATE",
+                    "situation" : "ABSENT"
+                }
+            ],
+            "onCreate" : {
+                "type" : "text/javascript",
+                "globals" : { },
+                "source" : "target.dn = 'uid=' + source.userName + \n  ',ou=People,ou=enterprise,dc=example,dc=com';"
+            },
+            "correlationQuery" : [
+                {
+                    "linkQualifier" : "default",
+                    "expressionTree" : {
+                        "any" : [
+                            "uid",
+                            "mail"
+                        ]
+                    },
+                    "mapping" : "managedUser_systemCorporateldapAccount",
+                    "type" : "text/javascript",
+                    "file" : "ui/correlateTreeToQueryFilter.js"
+                }
+            ]
+        }
+    ]
 }
