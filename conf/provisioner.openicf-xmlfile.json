@@ -1,0 +1,104 @@
+{
+    "connectorRef" : {
+        "systemType" : "provisioner.openicf",
+        "bundleName" : "org.forgerock.openicf.connectors.xml-connector",
+        "connectorName" : "org.forgerock.openicf.connectors.xml.XMLConnector",
+        "displayName" : "XML Connector",
+        "bundleVersion" : "1.1.0.3"
+    },
+    "poolConfigOption" : {
+        "maxObjects" : 10,
+        "maxIdle" : 10,
+        "maxWait" : 150000,
+        "minEvictableIdleTimeMillis" : 120000,
+        "minIdle" : 1
+    },
+    "resultsHandlerConfig" : {
+        "enableNormalizingResultsHandler" : true,
+        "enableFilteredResultsHandler" : true,
+        "enableCaseInsensitiveFilter" : false,
+        "enableAttributesToGetSearchResultsHandler" : true
+    },
+    "operationTimeout" : {
+        "CREATE" : -1,
+        "UPDATE" : -1,
+        "DELETE" : -1,
+        "TEST" : -1,
+        "SCRIPT_ON_CONNECTOR" : -1,
+        "SCRIPT_ON_RESOURCE" : -1,
+        "GET" : -1,
+        "RESOLVEUSERNAME" : -1,
+        "AUTHENTICATE" : -1,
+        "SEARCH" : -1,
+        "VALIDATE" : -1,
+        "SYNC" : -1,
+        "SCHEMA" : -1
+    },
+    "configurationProperties" : {
+        "xmlFilePath" : "&{launcher.project.location}/data/xmlConnectorData.xml",
+        "xsdFilePath" : "&{launcher.project.location}/data/resource-schema-extension.xsd",
+        "createFileIfNotExists" : false,
+        "xsdIcfFilePath" : "&{launcher.project.location}/data/resource-schema-1.xsd",
+        "readSchema" : false
+    },
+    "name" : "xmlfile",
+    "enabled" : true,
+    "objectTypes" : {
+        "xmlUser" : {
+            "$schema" : "http://json-schema.org/draft-03/schema",
+            "id" : "__ACCOUNT__",
+            "type" : "object",
+            "nativeType" : "__ACCOUNT__",
+            "properties" : {
+                "description" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "__DESCRIPTION__",
+                    "required" : false
+                },
+                "mobileTelephoneNumber" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "mobileTelephoneNumber",
+                    "required" : true
+                },
+                "roles" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "roles",
+                    "required" : false
+                },
+                "lastname" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "lastname",
+                    "required" : true
+                },
+                "firstname" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "firstname",
+                    "required" : false
+                },
+                "__NAME__" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "__NAME__",
+                    "required" : true
+                },
+                "_id" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "__UID__",
+                    "required" : false
+                },
+                "email" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "email",
+                    "required" : true
+                }
+            }
+        }
+    }
+}

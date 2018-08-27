@@ -1,0 +1,315 @@
+{
+    "name" : "corporateLDAP",
+    "connectorRef" : {
+        "bundleName" : "org.forgerock.openicf.connectors.ldap-connector",
+        "bundleVersion" : "[1.4.0.0,1.5.0.0)",
+        "connectorName" : "org.identityconnectors.ldap.LdapConnector"
+    },
+    "configurationProperties" : {
+        "host" : "localhost",
+        "port" : "1389",
+        "ssl" : false,
+        "principal" : "cn=Directory Manager",
+        "credentials" : {
+            "$crypto" : {
+                "type" : "x-simple-encryption",
+                "value" : {
+                    "cipher" : "AES/CBC/PKCS5Padding",
+                    "salt" : "rR2L5fWqBb6bpwH2T+bnWw==",
+                    "data" : "6mEH/lsabjrtBrcCWrSLEw==",
+                    "iv" : "m6wOY+cHYsiQYhNdiAQwWw==",
+                    "key" : "openidm-sym-default",
+                    "mac" : "Lisu5JKlIx608vhBFm5fvg=="
+                }
+            }
+        },
+        "baseContexts" : [
+            "ou=enterprise,dc=example,dc=com"
+        ],
+        "baseContextsToSynchronize" : [
+            "ou=enterprise,dc=example,dc=com"
+        ],
+        "accountSearchFilter" : null,
+        "accountSynchronizationFilter" : null,
+        "groupSearchFilter" : null,
+        "groupSynchronizationFilter" : null,
+        "passwordAttributeToSynchronize" : null,
+        "synchronizePasswords" : false,
+        "removeLogEntryObjectClassFromFilter" : true,
+        "modifiersNamesToFilterOut" : [ ],
+        "passwordDecryptionKey" : null,
+        "changeLogBlockSize" : "100",
+        "attributesToSynchronize" : [ ],
+        "changeNumberAttribute" : "changeNumber",
+        "passwordDecryptionInitializationVector" : null,
+        "filterWithOrInsteadOfAnd" : false,
+        "objectClassesToSynchronize" : [
+            "inetOrgPerson"
+        ],
+        "vlvSortAttribute" : "uid",
+        "passwordAttribute" : "userPassword",
+        "useBlocks" : false,
+        "maintainPosixGroupMembership" : false,
+        "failover" : [ ],
+        "readSchema" : false,
+        "accountObjectClasses" : [
+            "top",
+            "person",
+            "organizationalPerson",
+            "inetOrgPerson"
+        ],
+        "accountUserNameAttributes" : [
+            "uid"
+        ],
+        "groupMemberAttribute" : "uniqueMember",
+        "passwordHashAlgorithm" : null,
+        "usePagedResultControl" : true,
+        "blockSize" : "100",
+        "uidAttribute" : "dn",
+        "maintainLdapGroupMembership" : false,
+        "respectResourcePasswordPolicyChangeAfterReset" : false
+    },
+    "resultsHandlerConfig" : {
+        "enableNormalizingResultsHandler" : true,
+        "enableFilteredResultsHandler" : false,
+        "enableCaseInsensitiveFilter" : false,
+        "enableAttributesToGetSearchResultsHandler" : true
+    },
+    "poolConfigOption" : {
+        "maxObjects" : 10,
+        "maxIdle" : 10,
+        "maxWait" : 150000,
+        "minEvictableIdleTimeMillis" : 120000,
+        "minIdle" : 1
+    },
+    "operationTimeout" : {
+        "CREATE" : -1,
+        "VALIDATE" : -1,
+        "TEST" : -1,
+        "SCRIPT_ON_CONNECTOR" : -1,
+        "SCHEMA" : -1,
+        "DELETE" : -1,
+        "UPDATE" : -1,
+        "SYNC" : -1,
+        "AUTHENTICATE" : -1,
+        "GET" : -1,
+        "SCRIPT_ON_RESOURCE" : -1,
+        "SEARCH" : -1
+    },
+    "syncFailureHandler" : {
+        "maxRetries" : 5,
+        "postRetryAction" : "logged-ignore"
+    },
+    "objectTypes" : {
+        "group" : {
+            "$schema" : "http://json-schema.org/draft-03/schema",
+            "id" : "__GROUP__",
+            "type" : "object",
+            "nativeType" : "__GROUP__",
+            "properties" : {
+                "seeAlso" : {
+                    "type" : "array",
+                    "items" : {
+                        "type" : "string",
+                        "nativeType" : "string"
+                    },
+                    "nativeName" : "seeAlso",
+                    "nativeType" : "string"
+                },
+                "description" : {
+                    "type" : "array",
+                    "items" : {
+                        "type" : "string",
+                        "nativeType" : "string"
+                    },
+                    "nativeName" : "description",
+                    "nativeType" : "string"
+                },
+                "uniqueMember" : {
+                    "type" : "array",
+                    "items" : {
+                        "type" : "string",
+                        "nativeType" : "string"
+                    },
+                    "nativeName" : "uniqueMember",
+                    "nativeType" : "string"
+                },
+                "dn" : {
+                    "type" : "string",
+                    "required" : true,
+                    "nativeName" : "__NAME__",
+                    "nativeType" : "string"
+                },
+                "o" : {
+                    "type" : "array",
+                    "items" : {
+                        "type" : "string",
+                        "nativeType" : "string"
+                    },
+                    "nativeName" : "o",
+                    "nativeType" : "string"
+                },
+                "ou" : {
+                    "type" : "array",
+                    "items" : {
+                        "type" : "string",
+                        "nativeType" : "string"
+                    },
+                    "nativeName" : "ou",
+                    "nativeType" : "string"
+                },
+                "businessCategory" : {
+                    "type" : "array",
+                    "items" : {
+                        "type" : "string",
+                        "nativeType" : "string"
+                    },
+                    "nativeName" : "businessCategory",
+                    "nativeType" : "string"
+                },
+                "owner" : {
+                    "type" : "array",
+                    "items" : {
+                        "type" : "string",
+                        "nativeType" : "string"
+                    },
+                    "nativeName" : "owner",
+                    "nativeType" : "string"
+                },
+                "cn" : {
+                    "type" : "array",
+                    "items" : {
+                        "type" : "string",
+                        "nativeType" : "string"
+                    },
+                    "required" : true,
+                    "nativeName" : "cn",
+                    "nativeType" : "string"
+                }
+            }
+        },
+        "account" : {
+            "$schema" : "http://json-schema.org/draft-03/schema",
+            "id" : "__ACCOUNT__",
+            "type" : "object",
+            "nativeType" : "__ACCOUNT__",
+            "properties" : {
+                "cn" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "cn",
+                    "required" : false
+                },
+                "employeeType" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "employeeType",
+                    "required" : false
+                },
+                "description" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "description",
+                    "required" : false
+                },
+                "givenName" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "givenName",
+                    "required" : false
+                },
+                "mail" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "mail",
+                    "required" : false
+                },
+                "telephoneNumber" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "telephoneNumber",
+                    "required" : false
+                },
+                "sn" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "sn",
+                    "required" : false
+                },
+                "uid" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "uid",
+                    "required" : false
+                },
+                "dn" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "__NAME__",
+                    "required" : true
+                },
+                "userPassword" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "userPassword",
+                    "required" : false,
+                    "flags" : [
+                        "NOT_READABLE",
+                        "NOT_RETURNED_BY_DEFAULT"
+                    ],
+                    "runAsUser" : true
+                },
+                "ldapGroups" : {
+                    "type" : "array",
+                    "nativeType" : "string",
+                    "nativeName" : "ldapGroups",
+                    "required" : false,
+                    "items" : {
+                        "type" : "string",
+                        "nativeType" : "string"
+                    }
+                },
+                "disabled" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "ds-pwp-account-disabled",
+                    "required" : false
+                },
+                "aliasList" : {
+                    "type" : "array",
+                    "nativeType" : "string",
+                    "nativeName" : "iplanet-am-user-alias-list",
+                    "required" : false
+                },
+                "objectClass" : {
+                    "type" : "array",
+                    "nativeType" : "string",
+                    "nativeName" : "objectClass",
+                    "required" : false
+                },
+                "kbaInfo" : {
+                    "type" : "array",
+                    "nativeType" : "string",
+                    "nativeName" : "kbaInfo",
+                    "required" : false
+                }
+            }
+        }
+    },
+    "operationOptions" : {
+        "DELETE" : {
+            "denied" : false,
+            "onDeny" : "DO_NOTHING"
+        },
+        "UPDATE" : {
+            "denied" : false,
+            "onDeny" : "DO_NOTHING"
+        },
+        "CREATE" : {
+            "denied" : false,
+            "onDeny" : "DO_NOTHING"
+        }
+    },
+    "enabled" : true,
+    "enable" : "provisioner.openicf-ldap"
+}
