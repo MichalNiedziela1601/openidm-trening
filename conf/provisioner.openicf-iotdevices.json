@@ -1,0 +1,101 @@
+{
+    "connectorRef" : {
+        "systemType" : "provisioner.openicf",
+        "bundleName" : "org.forgerock.openicf.connectors.csvfile-connector",
+        "connectorName" : "org.forgerock.openicf.csvfile.CSVFileConnector",
+        "displayName" : "CSV File Connector",
+        "bundleVersion" : "1.5.1.4"
+    },
+    "poolConfigOption" : {
+        "maxObjects" : 10,
+        "maxIdle" : 10,
+        "maxWait" : 150000,
+        "minEvictableIdleTimeMillis" : 120000,
+        "minIdle" : 1
+    },
+    "resultsHandlerConfig" : {
+        "enableNormalizingResultsHandler" : true,
+        "enableFilteredResultsHandler" : true,
+        "enableCaseInsensitiveFilter" : false,
+        "enableAttributesToGetSearchResultsHandler" : true
+    },
+    "operationTimeout" : {
+        "CREATE" : -1,
+        "UPDATE" : -1,
+        "DELETE" : -1,
+        "TEST" : -1,
+        "SCRIPT_ON_CONNECTOR" : -1,
+        "SCRIPT_ON_RESOURCE" : -1,
+        "GET" : -1,
+        "RESOLVEUSERNAME" : -1,
+        "AUTHENTICATE" : -1,
+        "SEARCH" : -1,
+        "VALIDATE" : -1,
+        "SYNC" : -1,
+        "SCHEMA" : -1
+    },
+    "configurationProperties" : {
+        "headerPassword" : "password",
+        "csvFile" : "&{launcher.project.location}/data/IoT_Devices.csv",
+        "newlineString" : "\n",
+        "headerUid" : "serialNumber",
+        "quoteCharacter" : "\"",
+        "fieldDelimiter" : ",",
+        "syncFileRetentionCount" : "3",
+        "readSchema" : false
+    },
+    "name" : "iotdevices",
+    "enabled" : true,
+    "objectTypes" : {
+        "device" : {
+            "$schema" : "http://json-schema.org/draft-03/schema",
+            "id" : "__ACCOUNT__",
+            "type" : "object",
+            "nativeType" : "__ACCOUNT__",
+            "properties" : {
+                "owner" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "owner",
+                    "required" : true
+                },
+                "category" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "category",
+                    "required" : true
+                },
+                "__NAME__" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "__NAME__",
+                    "required" : true
+                },
+                "department" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "department",
+                    "required" : true
+                },
+                "model" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "model",
+                    "required" : true
+                },
+                "serialNumber" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "__UID__",
+                    "required" : true
+                },
+                "manufacturer" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "manufacturer",
+                    "required" : true
+                }
+            }
+        }
+    }
+}

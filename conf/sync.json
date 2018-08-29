@@ -235,6 +235,114 @@
                     "file" : "ui/correlateTreeToQueryFilter.js"
                 }
             ]
+        },
+        {
+            "target" : "managed/device",
+            "source" : "system/iotdevices/device",
+            "name" : "systemIotdevicesDevice_managedDevice",
+            "properties" : [
+                {
+                    "target" : "category",
+                    "source" : "category"
+                },
+                {
+                    "target" : "department",
+                    "source" : "department"
+                },
+                {
+                    "target" : "serialNumber",
+                    "source" : "serialNumber"
+                },
+                {
+                    "target" : "manufacture",
+                    "source" : "manufacturer"
+                },
+                {
+                    "target" : "model",
+                    "source" : "model"
+                },
+                {
+                    "target" : "owner",
+                    "source" : "owner",
+                    "transform" : {
+                        "type" : "text/javascript",
+                        "globals" : { },
+                        "source" : "if(source !== \"unassigned\") {\n  var ownerQry = openidm.query(\"managed/user\", {\n    \"_queryFilter\" : \"userName eq '\" + source + \"'\"\n  });\n  if(ownerQry.result.length === 1) {\n    ({ _ref: \"managed/user/\" + ownerQry.result[0]._id});\n  }\n}"
+                    }
+                }
+            ],
+            "policies" : [
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "AMBIGUOUS"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "SOURCE_MISSING"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "MISSING"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "FOUND_ALREADY_LINKED"
+                },
+                {
+                    "action" : "DELETE",
+                    "situation" : "UNQUALIFIED"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "UNASSIGNED"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "LINK_ONLY"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "TARGET_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "SOURCE_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "ALL_GONE"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "CONFIRMED"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "FOUND"
+                },
+                {
+                    "action" : "CREATE",
+                    "situation" : "ABSENT"
+                }
+            ],
+            "correlationQuery" : [
+                {
+                    "linkQualifier" : "default",
+                    "expressionTree" : {
+                        "any" : [
+                            "serialNumber"
+                        ]
+                    },
+                    "mapping" : "systemIotdevicesDevice_managedDevice",
+                    "type" : "text/javascript",
+                    "file" : "ui/correlateTreeToQueryFilter.js"
+                }
+            ],
+            "validSource" : {
+                "type" : "text/javascript",
+                "globals" : { },
+                "source" : "openidm.query('managed/user',\n              {'_queryFilter': '/userName eq \\\"'\n               + source.owner + '\\\"'}).result.length ===1;\n                              "
+            }
         }
     ]
 }
