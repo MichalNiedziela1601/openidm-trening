@@ -41,56 +41,56 @@
             ],
             "policies" : [
                 {
-                    "action" : "EXCEPTION",
-                    "situation" : "AMBIGUOUS"
-                },
-                {
-                    "action" : "EXCEPTION",
-                    "situation" : "SOURCE_MISSING"
-                },
-                {
-                    "action" : "EXCEPTION",
-                    "situation" : "MISSING"
-                },
-                {
-                    "action" : "EXCEPTION",
-                    "situation" : "FOUND_ALREADY_LINKED"
-                },
-                {
-                    "action" : "DELETE",
-                    "situation" : "UNQUALIFIED"
-                },
-                {
-                    "action" : "EXCEPTION",
-                    "situation" : "UNASSIGNED"
-                },
-                {
-                    "action" : "EXCEPTION",
-                    "situation" : "LINK_ONLY"
-                },
-                {
-                    "action" : "IGNORE",
-                    "situation" : "TARGET_IGNORED"
-                },
-                {
-                    "action" : "IGNORE",
-                    "situation" : "SOURCE_IGNORED"
-                },
-                {
-                    "action" : "IGNORE",
-                    "situation" : "ALL_GONE"
-                },
-                {
-                    "action" : "UPDATE",
+                    "action" : "ASYNC",
                     "situation" : "CONFIRMED"
                 },
                 {
-                    "action" : "UPDATE",
+                    "action" : "ASYNC",
                     "situation" : "FOUND"
                 },
                 {
-                    "action" : "CREATE",
+                    "action" : "ASYNC",
+                    "situation" : "FOUND_ALREADY_LINKED"
+                },
+                {
+                    "action" : "ASYNC",
                     "situation" : "ABSENT"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "AMBIGUOUS"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "MISSING"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "UNQUALIFIED"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "TARGET_IGNORED"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "SOURCE_IGNORED"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "LINK_ONLY"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "ALL_GONE"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "UNASSIGNED"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "SOURCE_MISSING"
                 }
             ],
             "correlationQuery" : [
@@ -273,6 +273,101 @@
             ],
             "policies" : [
                 {
+                    "action" : "ASYNC",
+                    "situation" : "CONFIRMED"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "FOUND"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "FOUND_ALREADY_LINKED"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "ABSENT"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "AMBIGUOUS"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "MISSING"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "UNQUALIFIED"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "TARGET_IGNORED"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "SOURCE_IGNORED"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "LINK_ONLY"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "ALL_GONE"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "UNASSIGNED"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "SOURCE_MISSING"
+                }
+            ],
+            "correlationQuery" : [
+                {
+                    "linkQualifier" : "default",
+                    "expressionTree" : {
+                        "any" : [
+                            "serialNumber"
+                        ]
+                    },
+                    "mapping" : "systemIotdevicesDevice_managedDevice",
+                    "type" : "text/javascript",
+                    "file" : "ui/correlateTreeToQueryFilter.js"
+                }
+            ],
+            "validSource" : {
+                "type" : "text/javascript",
+                "globals" : { },
+                "source" : "openidm.query('managed/user',\n              {'_queryFilter': '/userName eq \\\"'\n               + source.owner + '\\\"'}).result.length ===1;\n                              "
+            }
+        },
+        {
+            "target" : "managed/user",
+            "source" : "system/corporateLDAP/account",
+            "name" : "systemCorporateldapAccount_managedUser",
+            "properties" : [
+                {
+                    "target" : "userName",
+                    "source" : "uid"
+                },
+                {
+                    "target" : "givenName",
+                    "source" : "givenName"
+                },
+                {
+                    "target" : "sn",
+                    "source" : "sn"
+                },
+                {
+                    "target" : "mail",
+                    "source" : "mail"
+                }
+            ],
+            "policies" : [
+                {
                     "action" : "EXCEPTION",
                     "situation" : "AMBIGUOUS"
                 },
@@ -330,19 +425,15 @@
                     "linkQualifier" : "default",
                     "expressionTree" : {
                         "any" : [
-                            "serialNumber"
+                            "userName",
+                            "mail"
                         ]
                     },
-                    "mapping" : "systemIotdevicesDevice_managedDevice",
+                    "mapping" : "systemCorporateldapAccount_managedUser",
                     "type" : "text/javascript",
                     "file" : "ui/correlateTreeToQueryFilter.js"
                 }
-            ],
-            "validSource" : {
-                "type" : "text/javascript",
-                "globals" : { },
-                "source" : "openidm.query('managed/user',\n              {'_queryFilter': '/userName eq \\\"'\n               + source.owner + '\\\"'}).result.length ===1;\n                              "
-            }
+            ]
         }
     ]
 }
