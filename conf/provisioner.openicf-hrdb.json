@@ -1,0 +1,213 @@
+{
+    "name" : "hrdb",
+    "displayName" : "HRDB-ScriptedSQLConnector",
+    "description" : "ScriptedSQL connector used to connect to the HRDB within sample 3",
+    "version" : "1.4.1.0",
+    "author" : "ForgeRock",
+    "connectorRef" : {
+        "bundleName" : "org.forgerock.openicf.connectors.hrdb-connector",
+        "bundleVersion" : "[1.4.0.0,2.0.0.0)",
+        "connectorName" : "org.forgerock.openicf.connectors.hrdb.HRDBConnector"
+    },
+    "producerBufferSize" : 100,
+    "connectorPoolingSupported" : true,
+    "poolConfigOption" : {
+        "maxObjects" : 1,
+        "maxIdle" : 1,
+        "maxWait" : 150000,
+        "minEvictableIdleTimeMillis" : 120000,
+        "minIdle" : 1
+    },
+    "operationTimeout" : {
+        "CREATE" : -1,
+        "TEST" : -1,
+        "AUTHENTICATE" : -1,
+        "SEARCH" : -1,
+        "UPDATE" : -1,
+        "DELETE" : -1,
+        "SYNC" : -1,
+        "SCHEMA" : -1,
+        "GET" : -1,
+        "VALIDATE" : -1,
+        "SCRIPT_ON_CONNECTOR" : -1,
+        "SCRIPT_ON_RESOURCE" : -1
+    },
+    "configurationProperties" : {
+        "username" : "root",
+        "password" : {
+            "$crypto" : {
+                "type" : "x-simple-encryption",
+                "value" : {
+                    "cipher" : "AES/CBC/PKCS5Padding",
+                    "salt" : "r4qJFK3ZdUtJh1adXCILZg==",
+                    "data" : "Bh8FPTdl1zLlVolOfvJgbA==",
+                    "iv" : "rOP1dbF0J+yx+NTtr3R5Fw==",
+                    "key" : "openidm-sym-default",
+                    "mac" : "X1kKYZ3IHbHFuvFx3xBIdg=="
+                }
+            }
+        },
+        "driverClassName" : "com.mysql.jdbc.Driver",
+        "url" : "jdbc:mysql://localhost:3306/hrdb",
+        "scriptRoots" : [
+            "jar:file:&{launcher.install.location}/connectors/hrdb-connector-1.4.1.0.jar!/script/hrdb/"
+        ],
+        "classpath" : [
+            "jar:file:&{launcher.install.location}/connectors/hrdb-connector-1.4.1.0.jar!/scriptclass/hrdb/"
+        ],
+        "reloadScriptOnExecution" : false,
+        "authenticateScriptFileName" : "AuthenticateScript.groovy",
+        "createScriptFileName" : "CreateScript.groovy",
+        "testScriptFileName" : "TestScript.groovy",
+        "searchScriptFileName" : "SearchScript.groovy",
+        "deleteScriptFileName" : "DeleteScript.groovy",
+        "updateScriptFileName" : "UpdateScript.groovy",
+        "syncScriptFileName" : "SyncScript.groovy",
+        "schemaScriptFileName" : "SchemaScript.groovy"
+    },
+    "systemActions" : [
+        {
+            "scriptId" : "ResetDatabase",
+            "actions" : [
+                {
+                    "systemType" : ".*HRDBConnector",
+                    "actionType" : "Groovy",
+                    "actionFile" : "tools/ResetDatabaseScript.groovy"
+                }
+            ]
+        }
+    ],
+    "syncFailureHandler" : {
+        "maxRetries" : 5,
+        "postRetryAction" : "logged-ignore"
+    },
+    "objectTypes" : {
+        "group" : {
+            "$schema" : "http://json-schema.org/draft-03/schema",
+            "id" : " __GROUP__",
+            "type" : "object",
+            "nativeType" : "__GROUP__",
+            "properties" : {
+                "name" : {
+                    "type" : "string",
+                    "required" : true,
+                    "nativeName" : "__NAME__",
+                    "nativeType" : "string"
+                },
+                "gid" : {
+                    "type" : "string",
+                    "required" : true,
+                    "nativeName" : "gid",
+                    "nativeType" : "string"
+                },
+                "description" : {
+                    "type" : "string",
+                    "required" : false,
+                    "nativeName" : "description",
+                    "nativeType" : "string"
+                },
+                "users" : {
+                    "type" : "array",
+                    "required" : false,
+                    "nativeName" : "users",
+                    "nativeType" : "object",
+                    "items" : {
+                        "type" : "object",
+                        "properties" : {
+                            "uid" : "string"
+                        }
+                    }
+                }
+            }
+        },
+        "organization" : {
+            "$schema" : "http://json-schema.org/draft-03/schema",
+            "id" : " organization",
+            "type" : "object",
+            "nativeType" : "organization",
+            "properties" : {
+                "name" : {
+                    "type" : "string",
+                    "required" : true,
+                    "nativeName" : "__NAME__",
+                    "nativeType" : "string"
+                },
+                "description" : {
+                    "type" : "string",
+                    "required" : false,
+                    "nativeName" : "description",
+                    "nativeType" : "string"
+                }
+            }
+        },
+        "account" : {
+            "$schema" : "http://json-schema.org/draft-03/schema",
+            "id" : " __ACCOUNT__",
+            "type" : "object",
+            "nativeType" : "__ACCOUNT__",
+            "properties" : {
+                "firstName" : {
+                    "type" : "string",
+                    "required" : true,
+                    "nativeName" : "firstName",
+                    "nativeType" : "string"
+                },
+                "email" : {
+                    "type" : "string",
+                    "required" : false,
+                    "nativeName" : "email",
+                    "nativeType" : "string"
+                },
+                "cars" : {
+                    "type" : "array",
+                    "required" : false,
+                    "nativeName" : "cars",
+                    "nativeType" : "object",
+                    "items" : {
+                        "type" : "object",
+                        "properties" : {
+                            "year" : "string",
+                            "make" : "string",
+                            "model" : "string"
+                        }
+                    }
+                },
+                "password" : {
+                    "type" : "string",
+                    "required" : false,
+                    "nativeName" : "password",
+                    "nativeType" : "string",
+                    "flags" : [
+                        "NOT_READABLE",
+                        "NOT_RETURNED_BY_DEFAULT"
+                    ]
+                },
+                "uid" : {
+                    "type" : "string",
+                    "required" : true,
+                    "nativeName" : "__NAME__",
+                    "nativeType" : "string"
+                },
+                "fullName" : {
+                    "type" : "string",
+                    "required" : false,
+                    "nativeName" : "fullname",
+                    "nativeType" : "string"
+                },
+                "lastName" : {
+                    "type" : "string",
+                    "required" : true,
+                    "nativeName" : "lastname",
+                    "nativeType" : "string"
+                },
+                "organization" : {
+                    "type" : "string",
+                    "required" : true,
+                    "nativeName" : "organization",
+                    "nativeType" : "string"
+                }
+            }
+        }
+    },
+    "operationOptions" : { }
+}

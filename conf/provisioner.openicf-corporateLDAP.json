@@ -15,11 +15,11 @@
                 "type" : "x-simple-encryption",
                 "value" : {
                     "cipher" : "AES/CBC/PKCS5Padding",
-                    "salt" : "rR2L5fWqBb6bpwH2T+bnWw==",
-                    "data" : "6mEH/lsabjrtBrcCWrSLEw==",
-                    "iv" : "m6wOY+cHYsiQYhNdiAQwWw==",
+                    "salt" : "KvJB5J/JsjSKHJJVEyLlCw==",
+                    "data" : "njIPsBZhHafHZBNjMXY1/w==",
+                    "iv" : "onGhq31BrJCuUMAaQyBUWw==",
                     "key" : "openidm-sym-default",
-                    "mac" : "Lisu5JKlIx608vhBFm5fvg=="
+                    "mac" : "0eKRiJcbvXjvZbbWwdIIEA=="
                 }
             }
         },

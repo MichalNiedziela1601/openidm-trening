@@ -685,7 +685,7 @@
                     },
                     "IoT_Devices" : {
                         "description" : "One or more IoT devices assigned to the user.",
-                        "title" : "IoT_Devices",
+                        "title" : "IoT Devices",
                         "viewable" : true,
                         "searchable" : false,
                         "userEditable" : false,
@@ -722,13 +722,13 @@
                                         "fields" : [
                                             "category",
                                             "serialNumber",
-                                            "manufacture",
+                                            "manufacturer",
                                             "model"
                                         ],
                                         "sortKeys" : [
                                             "category",
                                             "serialNumber",
-                                            "manufacture",
+                                            "manufacturer",
                                             "model"
                                         ]
                                     }
@@ -1151,7 +1151,7 @@
                 "type" : "object",
                 "title" : "device",
                 "description" : "Schema definition for the device managed object",
-                "icon" : "fa-apple",
+                "icon" : "fa-dribbble",
                 "properties" : {
                     "category" : {
                         "description" : "What type of device is this?",
@@ -1166,7 +1166,7 @@
                         "type" : "string"
                     },
                     "serialNumber" : {
-                        "description" : "Enter the serial number",
+                        "description" : "Enter the serial number.",
                         "title" : "Serial Number",
                         "viewable" : true,
                         "searchable" : true,
@@ -1178,8 +1178,8 @@
                         "type" : "string"
                     },
                     "department" : {
-                        "description" : "Department device is assigned to.",
-                        "title" : "department",
+                        "description" : "Department device is assigned to",
+                        "title" : "Department",
                         "viewable" : true,
                         "searchable" : true,
                         "userEditable" : false,
@@ -1190,7 +1190,7 @@
                         "type" : "string"
                     },
                     "owner" : {
-                        "description" : "Device owner.",
+                        "description" : "Device owner",
                         "title" : "Owner",
                         "viewable" : true,
                         "searchable" : false,
@@ -1225,19 +1225,21 @@
                                     "queryFilter" : "true",
                                     "fields" : [
                                         "userName",
-                                        "givenName"
+                                        "givenName",
+                                        "sn"
                                     ],
                                     "sortKeys" : [
                                         "userName",
-                                        "givenName"
+                                        "givenName",
+                                        "sn"
                                     ]
                                 }
                             }
                         ]
                     },
-                    "manufacture" : {
-                        "description" : "Device manufacture",
-                        "title" : "Manufacture",
+                    "manufacturer" : {
+                        "description" : "Device manufacturer",
+                        "title" : "Manufacturer",
                         "viewable" : true,
                         "searchable" : true,
                         "userEditable" : false,
@@ -1248,7 +1250,7 @@
                         "type" : "string"
                     },
                     "model" : {
-                        "description" : "Device model",
+                        "description" : "Device model.",
                         "title" : "Model",
                         "viewable" : true,
                         "searchable" : true,
@@ -1260,7 +1262,7 @@
                         "type" : "string"
                     },
                     "description" : {
-                        "description" : "Device description",
+                        "description" : "Device description.",
                         "title" : "Description",
                         "viewable" : true,
                         "searchable" : false,
@@ -1281,7 +1283,7 @@
                     "serialNumber",
                     "department",
                     "owner",
-                    "manufacture",
+                    "manufacturer",
                     "model",
                     "description"
                 ]

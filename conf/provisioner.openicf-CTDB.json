@@ -1,0 +1,168 @@
+{
+    "connectorRef" : {
+        "systemType" : "provisioner.openicf",
+        "bundleName" : "org.forgerock.openicf.connectors.databasetable-connector",
+        "connectorName" : "org.identityconnectors.databasetable.DatabaseTableConnector",
+        "displayName" : "Database Table Connector",
+        "bundleVersion" : "1.1.0.2"
+    },
+    "poolConfigOption" : {
+        "maxObjects" : 10,
+        "maxIdle" : 10,
+        "maxWait" : 150000,
+        "minEvictableIdleTimeMillis" : 120000,
+        "minIdle" : 1
+    },
+    "resultsHandlerConfig" : {
+        "enableNormalizingResultsHandler" : true,
+        "enableFilteredResultsHandler" : true,
+        "enableCaseInsensitiveFilter" : false,
+        "enableAttributesToGetSearchResultsHandler" : true
+    },
+    "operationTimeout" : {
+        "CREATE" : -1,
+        "UPDATE" : -1,
+        "DELETE" : -1,
+        "TEST" : -1,
+        "SCRIPT_ON_CONNECTOR" : -1,
+        "SCRIPT_ON_RESOURCE" : -1,
+        "GET" : -1,
+        "RESOLVEUSERNAME" : -1,
+        "AUTHENTICATE" : -1,
+        "SEARCH" : -1,
+        "VALIDATE" : -1,
+        "SYNC" : -1,
+        "SCHEMA" : -1
+    },
+    "configurationProperties" : {
+        "quoting" : "",
+        "host" : "localhost",
+        "port" : "3306",
+        "user" : "root",
+        "password" : {
+            "$crypto" : {
+                "type" : "x-simple-encryption",
+                "value" : {
+                    "cipher" : "AES/CBC/PKCS5Padding",
+                    "salt" : "qnD0x2FsM7LCL0I6kN9N5w==",
+                    "data" : "uvwUCy/58J22j/4ma84OwA==",
+                    "iv" : "MZ2c6SQe4xarz7tBQmW9fg==",
+                    "key" : "openidm-sym-default",
+                    "mac" : "jI8/tt588YLmwtqDG5a0jw=="
+                }
+            }
+        },
+        "database" : "CTDB",
+        "table" : "users",
+        "keyColumn" : "id",
+        "passwordColumn" : "",
+        "jdbcDriver" : "com.mysql.jdbc.Driver",
+        "jdbcUrlTemplate" : "jdbc:mysql://%h:%p/%d",
+        "enableEmptyString" : false,
+        "rethrowAllSQLExceptions" : true,
+        "nativeTimestamps" : false,
+        "allNative" : false,
+        "validConnectionQuery" : null,
+        "changeLogColumn" : "timestamp",
+        "datasource" : "",
+        "jndiProperties" : null,
+        "suppressPassword" : true,
+        "readSchema" : false
+    },
+    "name" : "CTDB",
+    "enabled" : true,
+    "objectTypes" : {
+        "account" : {
+            "$schema" : "http://json-schema.org/draft-03/schema",
+            "id" : "__ACCOUNT__",
+            "type" : "object",
+            "nativeType" : "__ACCOUNT__",
+            "properties" : {
+                "employeeType" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "employeeType",
+                    "required" : false
+                },
+                "firstname" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "firstname",
+                    "required" : true
+                },
+                "telephoneNumber" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "telephoneNumber",
+                    "required" : false
+                },
+                "email" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "email",
+                    "required" : false
+                },
+                "enddate" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "enddate",
+                    "required" : false
+                },
+                "company" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "company",
+                    "required" : false
+                },
+                "organization" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "organization",
+                    "required" : false
+                },
+                "uid" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "uid",
+                    "required" : true
+                },
+                "country" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "country",
+                    "required" : false
+                },
+                "city" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "city",
+                    "required" : false
+                },
+                "lastname" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "lastname",
+                    "required" : true
+                },
+                "hireDate" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "hireDate",
+                    "required" : false
+                },
+                "title" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "title",
+                    "required" : false
+                },
+                "__NAME__" : {
+                    "type" : "string",
+                    "nativeType" : "string",
+                    "nativeName" : "__NAME__",
+                    "required" : true
+                }
+            }
+        }
+    }
+}
