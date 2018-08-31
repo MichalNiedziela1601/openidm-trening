@@ -164,56 +164,56 @@
             ],
             "policies" : [
                 {
-                    "action" : "EXCEPTION",
-                    "situation" : "AMBIGUOUS"
-                },
-                {
-                    "action" : "EXCEPTION",
-                    "situation" : "SOURCE_MISSING"
-                },
-                {
-                    "action" : "EXCEPTION",
-                    "situation" : "MISSING"
-                },
-                {
-                    "action" : "EXCEPTION",
-                    "situation" : "FOUND_ALREADY_LINKED"
-                },
-                {
-                    "action" : "DELETE",
-                    "situation" : "UNQUALIFIED"
-                },
-                {
-                    "action" : "EXCEPTION",
-                    "situation" : "UNASSIGNED"
-                },
-                {
-                    "action" : "EXCEPTION",
-                    "situation" : "LINK_ONLY"
-                },
-                {
-                    "action" : "IGNORE",
-                    "situation" : "TARGET_IGNORED"
-                },
-                {
-                    "action" : "IGNORE",
-                    "situation" : "SOURCE_IGNORED"
-                },
-                {
-                    "action" : "IGNORE",
-                    "situation" : "ALL_GONE"
-                },
-                {
-                    "action" : "UPDATE",
+                    "action" : "ASYNC",
                     "situation" : "CONFIRMED"
                 },
                 {
-                    "action" : "UPDATE",
+                    "action" : "ASYNC",
                     "situation" : "FOUND"
                 },
                 {
-                    "action" : "CREATE",
+                    "action" : "ASYNC",
+                    "situation" : "FOUND_ALREADY_LINKED"
+                },
+                {
+                    "action" : "ASYNC",
                     "situation" : "ABSENT"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "AMBIGUOUS"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "MISSING"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "UNQUALIFIED"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "TARGET_IGNORED"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "SOURCE_IGNORED"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "LINK_ONLY"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "ALL_GONE"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "UNASSIGNED"
+                },
+                {
+                    "action" : "ASYNC",
+                    "situation" : "SOURCE_MISSING"
                 }
             ],
             "onCreate" : {
@@ -234,7 +234,12 @@
                     "type" : "text/javascript",
                     "file" : "ui/correlateTreeToQueryFilter.js"
                 }
-            ]
+            ],
+            "validSource" : {
+                "type" : "text/javascript",
+                "globals" : { },
+                "source" : "source.employeeType !== 'Contractor';"
+            }
         },
         {
             "target" : "managed/device",
@@ -430,6 +435,199 @@
                         ]
                     },
                     "mapping" : "systemCorporateldapAccount_managedUser",
+                    "type" : "text/javascript",
+                    "file" : "ui/correlateTreeToQueryFilter.js"
+                }
+            ]
+        },
+        {
+            "target" : "managed/user",
+            "source" : "system/hrdb/account",
+            "name" : "systemHrdbAccount_managedUser",
+            "properties" : [
+                {
+                    "target" : "mail",
+                    "source" : "email"
+                },
+                {
+                    "target" : "sn",
+                    "source" : "lastName"
+                },
+                {
+                    "target" : "givenName",
+                    "source" : "firstName"
+                },
+                {
+                    "target" : "userName",
+                    "source" : "uid"
+                },
+                {
+                    "target" : "employeeType",
+                    "default" : "Employee"
+                }
+            ],
+            "policies" : [
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "AMBIGUOUS"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "SOURCE_MISSING"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "MISSING"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "FOUND_ALREADY_LINKED"
+                },
+                {
+                    "action" : "DELETE",
+                    "situation" : "UNQUALIFIED"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "UNASSIGNED"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "LINK_ONLY"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "TARGET_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "SOURCE_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "ALL_GONE"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "CONFIRMED"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "FOUND"
+                },
+                {
+                    "action" : "CREATE",
+                    "situation" : "ABSENT"
+                }
+            ],
+            "onCreate" : {
+                "type" : "text/javascript",
+                "globals" : { },
+                "source" : "target.password = 'Welcome1';"
+            },
+            "correlationQuery" : [
+                {
+                    "linkQualifier" : "default",
+                    "expressionTree" : {
+                        "all" : [
+                            "userName"
+                        ]
+                    },
+                    "mapping" : "systemHrdbAccount_managedUser",
+                    "type" : "text/javascript",
+                    "file" : "ui/correlateTreeToQueryFilter.js"
+                }
+            ]
+        },
+        {
+            "target" : "managed/user",
+            "source" : "system/CTDB/account",
+            "name" : "systemCtdbAccount_managedUser",
+            "properties" : [
+                {
+                    "target" : "userName",
+                    "source" : "uid"
+                },
+                {
+                    "target" : "givenName",
+                    "source" : "firstname"
+                },
+                {
+                    "target" : "sn",
+                    "source" : "lastname"
+                },
+                {
+                    "target" : "mail",
+                    "source" : "email"
+                },
+                {
+                    "target" : "employeeType",
+                    "default" : "Contractor"
+                }
+            ],
+            "policies" : [
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "AMBIGUOUS"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "SOURCE_MISSING"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "MISSING"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "FOUND_ALREADY_LINKED"
+                },
+                {
+                    "action" : "DELETE",
+                    "situation" : "UNQUALIFIED"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "UNASSIGNED"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "LINK_ONLY"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "TARGET_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "SOURCE_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "ALL_GONE"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "CONFIRMED"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "FOUND"
+                },
+                {
+                    "action" : "CREATE",
+                    "situation" : "ABSENT"
+                }
+            ],
+            "correlationQuery" : [
+                {
+                    "linkQualifier" : "default",
+                    "expressionTree" : {
+                        "all" : [
+                            "userName"
+                        ]
+                    },
+                    "mapping" : "systemCtdbAccount_managedUser",
                     "type" : "text/javascript",
                     "file" : "ui/correlateTreeToQueryFilter.js"
                 }

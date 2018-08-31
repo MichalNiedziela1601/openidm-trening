@@ -192,6 +192,18 @@
                         "pattern" : "",
                         "type" : "string"
                     },
+                    "employeeType" : {
+                        "description" : "Set to Employee or Contractor or other values for testing.",
+                        "title" : "Employee Type",
+                        "viewable" : true,
+                        "searchable" : true,
+                        "userEditable" : false,
+                        "policies" : [ ],
+                        "returnByDefault" : false,
+                        "minLength" : null,
+                        "pattern" : "",
+                        "type" : "string"
+                    },
                     "accountStatus" : {
                         "description" : "",
                         "title" : "Status",
@@ -750,6 +762,7 @@
                     "givenName",
                     "sn",
                     "mail",
+                    "employeeType",
                     "accountStatus",
                     "telephoneNumber",
                     "postalAddress",
