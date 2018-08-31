@@ -78,7 +78,7 @@
         }
     ],
     "syncFailureHandler" : {
-        "maxRetries" : 5,
+        "maxRetries" : -1,
         "postRetryAction" : "logged-ignore"
     },
     "objectTypes" : {

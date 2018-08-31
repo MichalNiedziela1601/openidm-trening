@@ -26,10 +26,6 @@
         "baseContexts" : [
             "ou=enterprise,dc=example,dc=com"
         ],
-        "baseContextsToSynchronize" : [
-            "ou=enterprise,dc=example,dc=com"
-        ],
-        "accountSearchFilter" : null,
         "accountSynchronizationFilter" : null,
         "groupSearchFilter" : null,
         "groupSynchronizationFilter" : null,
@@ -67,7 +63,10 @@
         "blockSize" : "100",
         "uidAttribute" : "entryUUID",
         "maintainLdapGroupMembership" : false,
-        "respectResourcePasswordPolicyChangeAfterReset" : false
+        "respectResourcePasswordPolicyChangeAfterReset" : false,
+        "baseContextsToSynchronize" : [
+            "ou=enterprise,dc=example,dc=com"
+        ]
     },
     "resultsHandlerConfig" : {
         "enableNormalizingResultsHandler" : true,
