@@ -747,6 +747,30 @@
                                 }
                             ]
                         }
+                    },
+                    "organization" : {
+                        "description" : "",
+                        "title" : "organization",
+                        "viewable" : true,
+                        "searchable" : true,
+                        "userEditable" : false,
+                        "policies" : [ ],
+                        "returnByDefault" : false,
+                        "minLength" : null,
+                        "pattern" : "",
+                        "type" : "string"
+                    },
+                    "managerMail" : {
+                        "description" : "Use a script to retrieve the email address from the Corporate LDAP directory",
+                        "title" : "Manager Email Address",
+                        "viewable" : true,
+                        "searchable" : false,
+                        "userEditable" : false,
+                        "policies" : [ ],
+                        "returnByDefault" : false,
+                        "minLength" : null,
+                        "pattern" : "",
+                        "type" : "string"
                     }
                 },
                 "required" : [
@@ -780,7 +804,9 @@
                     "lastSync",
                     "kbaInfo",
                     "preferences",
-                    "IoT_Devices"
+                    "IoT_Devices",
+                    "organization",
+                    "managerMail"
                 ]
             }
         },

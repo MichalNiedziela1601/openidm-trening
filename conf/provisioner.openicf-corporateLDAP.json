@@ -15,17 +15,21 @@
                 "type" : "x-simple-encryption",
                 "value" : {
                     "cipher" : "AES/CBC/PKCS5Padding",
-                    "salt" : "KvJB5J/JsjSKHJJVEyLlCw==",
-                    "data" : "njIPsBZhHafHZBNjMXY1/w==",
-                    "iv" : "onGhq31BrJCuUMAaQyBUWw==",
+                    "salt" : "YUjrHTYV331hIjAgMJddEQ==",
+                    "data" : "Nj3++h3tIVZuR5y63wnOcQ==",
+                    "iv" : "DL9h51tlLvd1SIqltq/BFw==",
                     "key" : "openidm-sym-default",
-                    "mac" : "0eKRiJcbvXjvZbbWwdIIEA=="
+                    "mac" : "raX3TRhtcBWnAmZzk9/vaQ=="
                 }
             }
         },
         "baseContexts" : [
             "ou=enterprise,dc=example,dc=com"
         ],
+        "baseContextsToSynchronize" : [
+            "ou=enterprise,dc=example,dc=com"
+        ],
+        "accountSearchFilter" : null,
         "accountSynchronizationFilter" : null,
         "groupSearchFilter" : null,
         "groupSynchronizationFilter" : null,
@@ -63,10 +67,7 @@
         "blockSize" : "100",
         "uidAttribute" : "entryUUID",
         "maintainLdapGroupMembership" : false,
-        "respectResourcePasswordPolicyChangeAfterReset" : false,
-        "baseContextsToSynchronize" : [
-            "ou=enterprise,dc=example,dc=com"
-        ]
+        "respectResourcePasswordPolicyChangeAfterReset" : false
     },
     "resultsHandlerConfig" : {
         "enableNormalizingResultsHandler" : true,

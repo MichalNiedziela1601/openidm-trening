@@ -70,10 +70,13 @@
                     "/mail" : {
                         "searchable" : true
                     },
+                    "/employeeType" : {
+                        "searchable" : true
+                    },
                     "/accountStatus" : {
                         "searchable" : true
                     },
-                    "/employeeType" : {
+                    "/organization" : {
                         "searchable" : true
                     }
                 }

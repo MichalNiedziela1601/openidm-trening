@@ -44,11 +44,11 @@
                 "type" : "x-simple-encryption",
                 "value" : {
                     "cipher" : "AES/CBC/PKCS5Padding",
-                    "salt" : "qnD0x2FsM7LCL0I6kN9N5w==",
-                    "data" : "uvwUCy/58J22j/4ma84OwA==",
-                    "iv" : "MZ2c6SQe4xarz7tBQmW9fg==",
+                    "salt" : "rlhMSJNeqNPF3+jr/ukxWw==",
+                    "data" : "MEk2VRIW5DA4w4XDZeJqCw==",
+                    "iv" : "R9ObnSbMolbr0oZ4oV0FOw==",
                     "key" : "openidm-sym-default",
-                    "mac" : "jI8/tt588YLmwtqDG5a0jw=="
+                    "mac" : "/VJJgqWmjIniqvD6ASXJ6Q=="
                 }
             }
         },

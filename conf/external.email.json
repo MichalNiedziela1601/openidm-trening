@@ -1,0 +1,11 @@
+{
+    "host" : "localhost",
+    "port" : "2525",
+    "auth" : {
+        "enable" : false
+    },
+    "starttls" : {
+        "enable" : false
+    },
+    "from" : ""
+}

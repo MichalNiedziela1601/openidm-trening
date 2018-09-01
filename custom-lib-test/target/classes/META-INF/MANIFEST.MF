@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1535811903455
+Build-Jdk: 1.8.0_151
+Built-By: sunday
+Bundle-ManifestVersion: 2
+Bundle-Name: Custom lib fragment test
+Bundle-SymbolicName: org.sample.custom-lib-test
+Bundle-Version: 1.0.0
+Created-By: Apache Maven Bundle Plugin
+Fragment-Host: org.apache.servicemix.bundles.rhino
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+Tool: Bnd-4.0.0.201805111645

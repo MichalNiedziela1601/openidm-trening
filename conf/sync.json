@@ -464,6 +464,19 @@
                 {
                     "target" : "employeeType",
                     "default" : "Employee"
+                },
+                {
+                    "target" : "organization",
+                    "source" : "organization"
+                },
+                {
+                    "target" : "managerMail",
+                    "transform" : {
+                        "type" : "text/javascript",
+                        "globals" : { },
+                        "file" : "managerMail.js"
+                    },
+                    "source" : ""
                 }
             ],
             "policies" : [

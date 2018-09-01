@@ -1,0 +1,7 @@
+{
+    "_file" : "echo.groovy",
+    "_type" : "groovy",
+    "file" : "customConfig.js",
+    "context" : "endpoint/test",
+    "type" : "text/javascript"
+}
