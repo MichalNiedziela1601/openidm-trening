@@ -845,12 +845,18 @@
                 "type" : "object",
                 "title" : "Role",
                 "description" : "",
+                "icon" : "",
                 "properties" : {
                     "_id" : {
                         "description" : "",
                         "title" : "Name",
                         "viewable" : false,
                         "searchable" : false,
+                        "userEditable" : false,
+                        "policies" : [ ],
+                        "returnByDefault" : false,
+                        "minLength" : null,
+                        "pattern" : "",
                         "type" : "string"
                     },
                     "name" : {
@@ -858,6 +864,11 @@
                         "title" : "Name",
                         "viewable" : true,
                         "searchable" : true,
+                        "userEditable" : false,
+                        "policies" : [ ],
+                        "returnByDefault" : false,
+                        "minLength" : null,
+                        "pattern" : "",
                         "type" : "string"
                     },
                     "description" : {
@@ -865,103 +876,23 @@
                         "title" : "Description",
                         "viewable" : true,
                         "searchable" : true,
+                        "userEditable" : false,
+                        "policies" : [ ],
+                        "returnByDefault" : false,
+                        "minLength" : null,
+                        "pattern" : "",
                         "type" : "string"
-                    },
-                    "members" : {
-                        "description" : "",
-                        "title" : "Role Members",
-                        "viewable" : true,
-                        "type" : "array",
-                        "returnByDefault" : false,
-                        "items" : {
-                            "type" : "relationship",
-                            "reverseRelationship" : true,
-                            "reversePropertyName" : "roles",
-                            "validate" : true,
-                            "properties" : {
-                                "_ref" : {
-                                    "type" : "string"
-                                },
-                                "_refProperties" : {
-                                    "type" : "object",
-                                    "properties" : {
-                                        "_id" : {
-                                            "type" : "string"
-                                        },
-                                        "_grantType" : {
-                                            "type" : "string",
-                                            "label" : "Grant Type"
-                                        }
-                                    }
-                                }
-                            },
-                            "resourceCollection" : [
-                                {
-                                    "path" : "managed/user",
-                                    "label" : "User",
-                                    "query" : {
-                                        "queryFilter" : "true",
-                                        "fields" : [
-                                            "userName",
-                                            "givenName",
-                                            "sn"
-                                        ],
-                                        "sortKeys" : [
-                                            "userName"
-                                        ]
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    "authzMembers" : {
-                        "description" : "",
-                        "title" : "Authorization Role Members",
-                        "viewable" : true,
-                        "type" : "array",
-                        "returnByDefault" : false,
-                        "items" : {
-                            "type" : "relationship",
-                            "reverseRelationship" : true,
-                            "reversePropertyName" : "authzRoles",
-                            "validate" : true,
-                            "properties" : {
-                                "_ref" : {
-                                    "type" : "string"
-                                },
-                                "_refProperties" : {
-                                    "type" : "object",
-                                    "properties" : {
-                                        "_id" : {
-                                            "type" : "string"
-                                        }
-                                    }
-                                }
-                            },
-                            "resourceCollection" : [
-                                {
-                                    "path" : "managed/user",
-                                    "label" : "User",
-                                    "query" : {
-                                        "queryFilter" : "true",
-                                        "fields" : [
-                                            "userName",
-                                            "givenName",
-                                            "sn"
-                                        ],
-                                        "sortKeys" : [
-                                            "userName"
-                                        ]
-                                    }
-                                }
-                            ]
-                        }
                     },
                     "assignments" : {
                         "description" : "",
                         "title" : "Managed Assignments",
                         "viewable" : true,
+                        "searchable" : false,
+                        "userEditable" : false,
+                        "policies" : [ ],
                         "returnByDefault" : false,
+                        "minLength" : null,
+                        "pattern" : "",
                         "type" : "array",
                         "items" : {
                             "type" : "relationship",
@@ -976,7 +907,8 @@
                                     "type" : "object",
                                     "properties" : {
                                         "_id" : {
-                                            "type" : "string"
+                                            "type" : "string",
+                                            "label" : ""
                                         }
                                     }
                                 }
@@ -998,23 +930,97 @@
                             ]
                         }
                     },
+                    "members" : {
+                        "description" : "",
+                        "title" : "Role Members",
+                        "viewable" : true,
+                        "searchable" : false,
+                        "userEditable" : false,
+                        "policies" : [ ],
+                        "returnByDefault" : false,
+                        "minLength" : null,
+                        "pattern" : "",
+                        "type" : "array",
+                        "items" : {
+                            "type" : "relationship",
+                            "reverseRelationship" : true,
+                            "reversePropertyName" : "roles",
+                            "validate" : true,
+                            "properties" : {
+                                "_ref" : {
+                                    "type" : "string"
+                                },
+                                "_refProperties" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                        "_id" : {
+                                            "type" : "string",
+                                            "label" : ""
+                                        },
+                                        "_grantType" : {
+                                            "type" : "string",
+                                            "label" : "Grant Type"
+                                        }
+                                    }
+                                }
+                            },
+                            "resourceCollection" : [
+                                {
+                                    "path" : "managed/user",
+                                    "label" : "User",
+                                    "query" : {
+                                        "queryFilter" : "true",
+                                        "fields" : [
+                                            "userName",
+                                            "givenName",
+                                            "sn",
+                                            "organization"
+                                        ],
+                                        "sortKeys" : [
+                                            "userName"
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
                     "condition" : {
                         "description" : "A conditional filter for this role",
                         "title" : "Condition",
                         "viewable" : false,
                         "searchable" : false,
+                        "userEditable" : false,
+                        "policies" : [ ],
+                        "returnByDefault" : false,
+                        "minLength" : null,
+                        "pattern" : "",
                         "type" : "string"
                     },
                     "temporalConstraints" : {
                         "description" : "An array of temporal constraints for a role",
                         "title" : "Temporal Constraints",
                         "viewable" : false,
+                        "searchable" : false,
+                        "userEditable" : false,
+                        "policies" : [ ],
                         "returnByDefault" : true,
+                        "minLength" : null,
+                        "pattern" : "",
                         "type" : "array",
                         "items" : {
                             "type" : "object",
                             "properties" : {
                                 "duration" : {
+                                    "description" : "",
+                                    "title" : "",
+                                    "viewable" : true,
+                                    "searchable" : false,
+                                    "userEditable" : false,
+                                    "policies" : [ ],
+                                    "returnByDefault" : false,
+                                    "minLength" : null,
+                                    "pattern" : "",
+                                    "nullable" : false,
                                     "type" : "string"
                                 }
                             },
