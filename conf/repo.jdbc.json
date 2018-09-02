@@ -78,7 +78,13 @@
                     },
                     "/organization" : {
                         "searchable" : true
-                    }
+                    },
+                    "/sunset" : {
+						"searchable" : false
+					},
+					"/sunset/date" : {
+						"searchable" : false
+					}
                 }
             },
             "scheduler" : {
