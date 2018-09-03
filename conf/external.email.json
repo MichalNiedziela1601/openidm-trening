@@ -1,11 +1,25 @@
 {
-    "host" : "localhost",
-    "port" : "2525",
+    "host" : "smtp.gmail.com",
+    "port" : "587",
     "auth" : {
-        "enable" : false
+        "enable" : true,
+        "username" : "sunday1601@gmail.com",
+        "password" : {
+            "$crypto" : {
+                "type" : "x-simple-encryption",
+                "value" : {
+                    "cipher" : "AES/CBC/PKCS5Padding",
+                    "salt" : "6EjD22WQRhIjbrzPi9vanA==",
+                    "data" : "r0JphPIHOJgUCbpKINSdPQ==",
+                    "iv" : "9P8NC0lWVEDJC5tW/jD1rg==",
+                    "key" : "openidm-sym-default",
+                    "mac" : "cG+U9l8LahkvKG9euLpk2A=="
+                }
+            }
+        }
     },
     "starttls" : {
-        "enable" : false
+        "enable" : true
     },
-    "from" : ""
+    "from" : "openidm@examle.com"
 }

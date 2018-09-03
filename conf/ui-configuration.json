@@ -1,8 +1,8 @@
 {
     "configuration" : {
-        "selfRegistration" : false,
-        "passwordReset" : false,
-        "forgotUsername" : false,
+        "selfRegistration" : true,
+        "passwordReset" : true,
+        "forgotUsername" : true,
         "lang" : "en",
         "passwordResetLink" : "",
         "roles" : {
@@ -23,6 +23,9 @@
                 "iconPath" : "images/notifications/error.png"
             }
         },
-        "defaultNotificationType" : "info"
+        "defaultNotificationType" : "info",
+        "kbaDefinitionEnabled" : true,
+        "kbaEnabled" : true,
+        "kbaVerificationEnabled" : true
     }
 }
