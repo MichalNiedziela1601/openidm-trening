@@ -62,6 +62,7 @@
                     "queryOnResource" : "security/truststore",
                     "defaultUserRoles" : [ "openidm-cert" ],
                     "allowedAuthenticationIdPatterns" : [
+                    "CN=vm1.pingexample.com, O=OpenDJ RSA Self-Signed Certificate"
                     ]
                 },
                 "enabled" : true

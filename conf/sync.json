@@ -468,15 +468,6 @@
                 {
                     "target" : "organization",
                     "source" : "organization"
-                },
-                {
-                    "target" : "managerMail",
-                    "transform" : {
-                        "type" : "text/javascript",
-                        "globals" : { },
-                        "file" : "managerMail.js"
-                    },
-                    "source" : ""
                 }
             ],
             "policies" : [
@@ -577,10 +568,6 @@
                 {
                     "target" : "employeeType",
                     "default" : "Contractor"
-                },
-                {
-                    "target" : "organization",
-                    "source" : "organization"
                 }
             ],
             "policies" : [
