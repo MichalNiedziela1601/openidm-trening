@@ -8,15 +8,15 @@
                 "keystoreType" : "&{openidm.keystore.type}",
                 "keystoreFile" : "&{openidm.keystore.location}",
                 "keystorePassword" : "&{openidm.keystore.password}",
-                "maxTokenLifeMinutes" : "1200",
-                "tokenIdleTimeMinutes" : "300",
                 "sessionOnly" : true,
-                "isHttpOnly" : true
+                "isHttpOnly" : true,
+                "maxTokenLifeSeconds" : "5",
+                "tokenIdleTimeSeconds" : "5"
             }
         },
         "authModules" : [
             {
-                "name" : "STATIC_USER",
+                "enabled" : true,
                 "properties" : {
                     "queryOnResource" : "repo/internal/user",
                     "username" : "anonymous",
@@ -25,52 +25,106 @@
                         "openidm-reg"
                     ]
                 },
-                "enabled" : true
+                "name" : "STATIC_USER"
             },
             {
-                "name" : "MANAGED_USER",
+                "enabled" : false,
                 "properties" : {
+                    "queryOnResource" : "managed/user",
+                    "queryId" : "credential-query",
+                    "defaultUserRoles" : [ ],
                     "augmentSecurityContext" : {
                         "type" : "text/javascript",
+                        "globals" : { },
                         "source" : "require('auth/customAuthz').setProtectedAttributes(security)"
                     },
-                    "queryId" : "credential-query",
-                    "queryOnResource" : "managed/user",
                     "propertyMapping" : {
                         "authenticationId" : "username",
                         "userCredential" : "password",
                         "userRoles" : "authzRoles"
-                    },
-                    "defaultUserRoles" : [ ]
+                    }
                 },
-                "enabled" : true
+                "name" : "MANAGED_USER"
             },
             {
-                "name" : "INTERNAL_USER",
+                "enabled" : true,
                 "properties" : {
-                    "queryId" : "credential-internaluser-query",
                     "queryOnResource" : "repo/internal/user",
+                    "queryId" : "credential-internaluser-query",
+                    "defaultUserRoles" : [ ],
                     "propertyMapping" : {
                         "authenticationId" : "username",
                         "userCredential" : "password",
                         "userRoles" : "roles"
-                    },
-                    "defaultUserRoles" : [ ]
+                    }
                 },
-                "enabled" : true
+                "name" : "INTERNAL_USER"
             },
             {
-                "name" : "CLIENT_CERT",
+                "enabled" : false,
                 "properties" : {
                     "queryOnResource" : "security/truststore",
                     "defaultUserRoles" : [
                         "openidm-cert"
                     ],
+                    "propertyMapping" : {
+                        "authenticationId" : "userName",
+                        "userRoles" : "authzRoles"
+                    },
                     "allowedAuthenticationIdPatterns" : [
                         "CN=vm1.pingexample.com, O=OpenDJ RSA Self-Signed Certificate"
                     ]
                 },
-                "enabled" : true
+                "name" : "CLIENT_CERT"
+            },
+            {
+                "enabled" : true,
+                "properties" : {
+                    "resolvers" : [
+                        {
+                            "name" : "OPENAM",
+                            "icon" : "<button class=\"btn btn-lg btn-default btn-block btn-social-provider\"><img src=\"images/forgerock_logo.png\">Sign In</button>",
+                            "scope" : [
+                                "openid"
+                            ],
+                            "well-known" : "http://vm1.pingexample.com:18080/openam/oauth2/enterprise/.well-known/openid-configuration",
+                            "client_id" : "openidm",
+                            "client_secret" : {
+                                "$crypto" : {
+                                    "type" : "x-simple-encryption",
+                                    "value" : {
+                                        "cipher" : "AES/CBC/PKCS5Padding",
+                                        "salt" : "zFQCGXHatqJQDlkyeJeoHw==",
+                                        "data" : "1U87fxCnvuY32PMca59RNw==",
+                                        "iv" : "LSJ/HueXYDq81PvXCVpOjw==",
+                                        "key" : "openidm-sym-default",
+                                        "mac" : "qdova+hmSIKVaVSaw9f94g=="
+                                    }
+                                }
+                            },
+                            "authorization_endpoint" : "http://vm1.pingexample.com:18080/openam/oauth2/realms/root/realms/enterprise/authorize",
+                            "token_endpoint" : "http://vm1.pingexample.com:18080/openam/oauth2/realms/root/realms/enterprise/access_token",
+                            "end_session_endpoint" : "http://vm1.pingexample.com:18080/openam/oauth2/realms/root/realms/enterprise/connect/endSession"
+                        }
+                    ],
+                    "queryOnResource" : "system/corporateLDAP/account",
+                    "defaultUserRoles" : [
+                        "openidm-authorized"
+                    ],
+                    "openIdConnectHeader" : "authToken",
+                    "propertyMapping" : {
+                        "authenticationId" : "userName",
+                        "userRoles" : "authzRoles"
+                    },
+                    "augmentSecurityContext" : {
+                        "type" : "text/javascript",
+                        "globals" : {
+                            "sessionValidationBaseEndpoint" : "http://vm1.pingexample.com:18080/openam/json/enterprise/sessions/"
+                        },
+                        "file" : "auth/amSessionCheck.js"
+                    }
+                },
+                "name" : "OPENID_CONNECT"
             }
         ]
     }
