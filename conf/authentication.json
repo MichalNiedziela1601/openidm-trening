@@ -21,14 +21,16 @@
                     "queryOnResource" : "repo/internal/user",
                     "username" : "anonymous",
                     "password" : "anonymous",
-                    "defaultUserRoles" : [ "openidm-reg" ]
+                    "defaultUserRoles" : [
+                        "openidm-reg"
+                    ]
                 },
                 "enabled" : true
             },
             {
                 "name" : "MANAGED_USER",
                 "properties" : {
-                    "augmentSecurityContext": {
+                    "augmentSecurityContext" : {
                         "type" : "text/javascript",
                         "source" : "require('auth/customAuthz').setProtectedAttributes(security)"
                     },
@@ -57,30 +59,15 @@
                 },
                 "enabled" : true
             },
-            {   "name" : "CLIENT_CERT",
+            {
+                "name" : "CLIENT_CERT",
                 "properties" : {
                     "queryOnResource" : "security/truststore",
-                    "defaultUserRoles" : [ "openidm-cert" ],
-                    "allowedAuthenticationIdPatterns" : [
-                    "CN=vm1.pingexample.com, O=OpenDJ RSA Self-Signed Certificate"
-                    ]
-                },
-                "enabled" : true
-            },
-            {
-                "name" : "PASSTHROUGH",
-                "properties" : {
-                    "augmentSecurityContext": {
-                        "type" : "text/javascript",
-                        "file" : "auth/populateAsManagedUser.js"
-                    },
-                    "queryOnResource" : "system/hrdb/account",
-                    "propertyMapping" : {
-                        "authenticationId" : "uid"
-                    },
-                    "managedUserLink" : "systemHrdb_managedUser",
                     "defaultUserRoles" : [
-                        "openidm-authorized"
+                        "openidm-cert"
+                    ],
+                    "allowedAuthenticationIdPatterns" : [
+                        "CN=vm1.pingexample.com, O=OpenDJ RSA Self-Signed Certificate"
                     ]
                 },
                 "enabled" : true
