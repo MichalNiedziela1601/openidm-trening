@@ -1,35 +1,14 @@
 {
     "stageConfigs" : [
         {
-            "name" : "captcha",
-            "recaptchaSiteKey" : "6LcOEW4UAAAAAOAjpp6kMjcQVI4olrnwMWcaNtiF",
-            "recaptchaSecretKey" : "6LcOEW4UAAAAAD03joWeZ79jr74Je0J3w87Rg2dv",
-            "recaptchaUri" : "https://www.google.com/recaptcha/api/siteverify"
-        },
-        {
             "name" : "userQuery",
             "validQueryFields" : [
-                "mail",
-                "givenName",
-                "sn"
+                "mail"
             ],
             "identityIdField" : "_id",
             "identityEmailField" : "mail",
             "identityUsernameField" : "userName",
             "identityServiceUrl" : "managed/user"
-        },
-        {
-            "name" : "emailUsername",
-            "emailServiceUrl" : "external/email",
-            "from" : "info@admin.org",
-            "mimeType" : "text/html",
-            "subjectTranslations" : {
-                "en" : "Account Information - username"
-            },
-            "messageTranslations" : {
-                "en" : "<h3>Username is:</h3><br />%username%"
-            },
-            "usernameToken" : "%username%"
         },
         {
             "name" : "retrieveUsername"

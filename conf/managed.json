@@ -759,6 +759,21 @@
                         "minLength" : null,
                         "pattern" : "",
                         "type" : "string"
+                    },
+                    "employeeNum" : {
+                        "description" : "Enter your employee ID number.",
+                        "title" : "Employee ID Number",
+                        "viewable" : true,
+                        "searchable" : true,
+                        "userEditable" : true,
+                        "policies" : [ ],
+                        "returnByDefault" : false,
+                        "minLength" : null,
+                        "pattern" : "",
+                        "type" : [
+                            "string",
+                            "null"
+                        ]
                     }
                 },
                 "required" : [
@@ -793,7 +808,8 @@
                     "kbaInfo",
                     "preferences",
                     "IoT_Devices",
-                    "organization"
+                    "organization",
+                    "employeeNum"
                 ]
             }
         },

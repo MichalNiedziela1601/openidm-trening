@@ -78,6 +78,9 @@
                     },
                     "/organization" : {
                         "searchable" : true
+                    },
+                    "/employeeNum" : {
+                        "searchable" : true
                     }
                 }
             },

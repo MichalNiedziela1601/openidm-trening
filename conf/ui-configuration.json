@@ -24,7 +24,7 @@
             }
         },
         "defaultNotificationType" : "info",
-        "kbaDefinitionEnabled" : true,
+        "kbaDefinitionEnabled" : false,
         "kbaEnabled" : true,
         "kbaVerificationEnabled" : true
     }

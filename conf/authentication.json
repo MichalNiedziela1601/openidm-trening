@@ -10,8 +10,8 @@
                 "keystorePassword" : "&{openidm.keystore.password}",
                 "sessionOnly" : true,
                 "isHttpOnly" : true,
-                "maxTokenLifeSeconds" : "5",
-                "tokenIdleTimeSeconds" : "5"
+                "maxTokenLifeMinutes" : "120",
+                "tokenIdleTimeMinutes" : "30"
             }
         },
         "authModules" : [
@@ -28,7 +28,7 @@
                 "name" : "STATIC_USER"
             },
             {
-                "enabled" : false,
+                "enabled" : true,
                 "properties" : {
                     "queryOnResource" : "managed/user",
                     "queryId" : "credential-query",
@@ -61,7 +61,7 @@
                 "name" : "INTERNAL_USER"
             },
             {
-                "enabled" : false,
+                "enabled" : true,
                 "properties" : {
                     "queryOnResource" : "security/truststore",
                     "defaultUserRoles" : [
@@ -78,7 +78,7 @@
                 "name" : "CLIENT_CERT"
             },
             {
-                "enabled" : true,
+                "enabled" : false,
                 "properties" : {
                     "resolvers" : [
                         {
